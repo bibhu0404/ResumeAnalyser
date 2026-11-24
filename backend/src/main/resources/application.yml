@@ -1,0 +1,48 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: resume-analyser-backend
+
+  # MySQL Database Connection
+  datasource:
+    url: jdbc:mysql://localhost:3306/resume_analyzer?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: root
+    password: "Bibhu0404*"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # Hibernate ORM - Automatically creates and updates tables
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 20MB
+
+# Custom Application Properties
+app:
+  jwt:
+    secret: "SuperSecretKeyForResumeAnalyserMustBeAtLeast32CharactersLong2026!"
+    expiration-ms: 86400000 # 24 Hours in milliseconds
+
+  google:
+    client-id: "1086097636155-ere1loc0p543vmseqpllg7lneeo72h2h.apps.googleusercontent.com"
+
+  ai:
+    # Optional LLM API Key (OpenAI or Gemini). If left blank, uses local ATS heuristic engine.
+    api-key: "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"
+    base-url: "https://api.groq.com/openai/v1"
+    model: "llama-3.3-70b-versatile"
+
+logging:
+  level:
+    com.resumeanalyser: INFO
+    org.springframework.security: INFO
